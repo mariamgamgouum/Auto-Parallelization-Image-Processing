@@ -79,40 +79,6 @@ void applyThreshold(Image& img, unsigned char threshold) {
     }
 }
 
-// Function 6: Apply box blur filter (PARALLELIZABLE with careful boundary handling)
-void applyBoxBlur(Image& img, int kernelSize) {
-    int size = img.width * img.height;
-    vector<unsigned char> temp(size);
-    
-    int halfKernel = kernelSize / 2;
-    
-    for (int y = 0; y < img.height; y++) {
-        for (int x = 0; x < img.width; x++) {
-            int sum = 0;
-            int count = 0;
-            
-            for (int ky = -halfKernel; ky <= halfKernel; ky++) {
-                for (int kx = -halfKernel; kx <= halfKernel; kx++) {
-                    int ny = y + ky;
-                    int nx = x + kx;
-                    
-                    if (ny >= 0 && ny < img.height && nx >= 0 && nx < img.width) {
-                        sum += img.gray[ny * img.width + nx];
-                        count++;
-                    }
-                }
-            }
-            
-            temp[y * img.width + x] = (unsigned char)(sum / count);
-        }
-    }
-    
-    // Copy back
-    for (int i = 0; i < size; i++) {
-        img.gray[i] = temp[i];
-    }
-}
-
 // Main function with profiling-friendly structure
 int main(int argc, char* argv[]) {
     // Default image size
@@ -159,13 +125,6 @@ int main(int argc, char* argv[]) {
     adjustBrightness(img, 20);
     end = high_resolution_clock::now();
     cout << "Brightness adjustment: " 
-         << duration_cast<milliseconds>(end - start).count() << " ms" << endl;
-    
-    // Box blur
-    start = high_resolution_clock::now();
-    applyBoxBlur(img, 3);
-    end = high_resolution_clock::now();
-    cout << "Box blur: " 
          << duration_cast<milliseconds>(end - start).count() << " ms" << endl;
     
     // Threshold
