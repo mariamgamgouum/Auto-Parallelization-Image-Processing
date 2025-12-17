@@ -36,3 +36,6 @@ echo ""
 echo "=================================="
 echo "Comparison Complete!"
 echo "=================================="
+echo ""
+echo "Pausing for 1 minute to review results..."
+sleep 60

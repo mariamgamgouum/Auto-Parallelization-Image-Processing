@@ -75,3 +75,6 @@ else
     echo "Please review the differences above."
 fi
 echo "================================================"
+echo ""
+echo "Pausing for 1 minute to review results..."
+sleep 60
