@@ -1,0 +1,32 @@
+# Compiled executables
+*.exe
+*.out
+image_processor
+image_processor_sequential
+image_processor_parallel
+
+# Object files
+*.o
+*.obj
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*~
