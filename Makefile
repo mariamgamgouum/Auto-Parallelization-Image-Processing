@@ -98,3 +98,8 @@ benchmark: all
 	@echo -n "Parallel:   "
 	@./$(EXEC_PAR) 4096 4096 | grep "Grayscale conversion"
 	@echo ""
+
+profile_build:
+	@echo "Building sequential version with profiling support..."
+	$(CC) -std=c++11 -O0 -fno-inline -pg $(SOURCES_SEQ) -o $(EXEC_SEQ)_profiled
+	@echo "✓ Profiled version built: $(EXEC_SEQ)_profiled"
